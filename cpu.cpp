@@ -570,29 +570,32 @@ void Cpu::Rol(uint16_t address)
     updateZeroAndNegativeFlags(value);
 }
 
-void Cpu::execute()
+void Cpu::execute(int programStart)
 {
  
-    pc = 0x6000;
-    sp = 0xFF; // Initialize stack pointer
-    int cos = 0;
-    while (true) {
+    pc = programStart;
+    sp = 0xFF; 
+    
+    while (true) 
+    {
         std::cout << "Program Counter (pc): " << std::hex << pc << std::endl;
         unsigned char opcode = fetch();
         std::cout << "Fetched opcode: " << std::hex << (int)opcode << std::endl;
-        executeInstruction(opcode);
-        std::cout << "Stack Pointer (sp): " << std::hex << (int)sp << std::endl;
-
-        if (opcode == 0x60) {  // RTS opcode
-            std::cout << "RTS encountered. Exiting.\n";
-            break;
-        } 
-       std::cout<<x;
-
-           cos++;
-        if (cos >= 8)
+          if (opcode == 0)
         {
             break;
         }
+        
+        executeInstruction(opcode);
+        std::cout << "Stack Pointer (sp): " << std::hex << (int)sp << std::endl;
+
+        if (opcode == 0x60) {  
+            std::cout << "RTS encountered. Exiting.\n";
+            break;
+        } 
+      
+       
+       
+       
     }
 }

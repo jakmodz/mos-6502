@@ -5,11 +5,10 @@ class Cpu
 public:
     Cpu(Memory& memory);
     void reset();
-    void execute();
+    void execute(int programStart);
     unsigned char fetch();
 
 private:
-
     
     unsigned char read(uint16_t address);
     void write(uint16_t address, unsigned char value);
@@ -23,7 +22,7 @@ private:
     Memory& memory;
 
 
-
+    
     void setFlag(unsigned char flag , bool value);
     bool getFlag(unsigned char flag) const;
     void updateZeroAndNegativeFlags(unsigned char  value);
